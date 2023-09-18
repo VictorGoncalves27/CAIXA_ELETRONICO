@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR   ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa Eletrônico</title>
+
+    <script>
+
+        var nome = prompt("digite seu nome:")
+        var senha = prompt("digite sua senha: ( Ex : 3589 )")
+        var Saldo = 100.00
+
+        if (senha === "3589") {
+            alert(`OLÁ, ${nome} SEJA BEM VINDO(A)`)
+            inicio();
+        } else {
+            alert("SENHA INCORRETA ")
+            
+        }
+
+        function inicio() {
+
+            let escolha = parseInt(prompt("Selecione uma opção: \n1- Saldo,\n 2- Saque,\n 3- Deposito,\n 4- Extrato,\n 5- Transferência,\n 6- Sair"))
+
+            switch (escolha) {
+                case 1:
+                    saldo();
+                    break;
+                case 2:
+                    saque()
+                    break;
+                case 3:
+                    deposito()
+                    break;
+                case 4:
+                    extrato()
+                    break;
+                    case 5:
+                    transferencia()
+                    break;
+                case 6:
+                    sair()
+                    break;
+            }
+        }
+
+        function saldo() {
+            alert(`Seu saldo atual é:`  + Saldo);
+            inicio();
+        }
+
+        function saque() {
+            var Saque = parseFloat(prompt('Qual o valor para saque?'));
+            Saque = parseFloat(Saque);
+
+            if (isNaN(Saque) || Saque <= 0) {
+                alert("Valor inválido. Por favor, insira um valor válido.");
+                return;
+            } else if (Saque > Saldo) {
+                alert("Saldo insuficiente.");
+                return;
+            } else {
+                Saldo -= Saque
+                alert(`Você sacou R$${Saque}. Seu novo saldo é R$${Saldo}`);
+                inicio();
+            }
+        }
+
+        function deposito() {
+            var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+            if (isNaN(deposito) || deposito === '') {
+                alert('Por favor, informe um número.');
+            } else {
+                Saldo += deposito
+                alert(`Você depositou ${deposito}, seu saldo é de ${Saldo}`)
+                inicio()
+            }
+        }
+
+        function extrato() {
+            alert('Extrato Bancário.\nLoja da Lara: Bandeja de ovos de codorna: R$ 24,00.\nMercadinho Simbão: Cebola Roxa - 5,40kg: R$ 10.,56\nMercadinho da Paula: Margarina Delícia - 3Un: R$ 20,99')
+                inicio();
+        }
+
+        function erro() {
+            alert('Por favor, informe um número entre 1 e 6.');
+            inicio();
+        }
+
+        function transferencia() {
+            var Conta =    prompt("Qual conta você deseja transferirex: (ex:0000)    ")
+            var transferir = parseFloat(prompt('Qual o valor da transferência?'));
+
+            
+            if(transferir <= 0){
+                alert('Operação não autorizada. O valor da tranferência deve ser maior que zero')
+                transferencia()
+            } else if (transferir > Saldo){
+                alert('Operação não autorizada. O valor da tranferência não pode ser maior que o saldo')
+                transferencia()
+            } else if ((isNaN(transferir)) || transferir === '') {
+                    alert('Por favor, informe um número:');
+                    transferencia();
+            } else {
+                Saldo -= transferir
+                alert(`Você transferiu ${transferir} para a conta ${Conta}, seu saldo é de ${Saldo}`)
+                inicio()
+            }
+
+        }
+
+        function sair() {
+            var confirma = confirm('Você deseja sair?');
+            if (confirma) {
+                window.close();
+            } else {
+                inicio();
+            }
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
